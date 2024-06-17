@@ -1,5 +1,7 @@
 package com.ag04.pluginplatform.classloader;
 
+import com.google.common.io.ByteStreams;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -68,7 +70,7 @@ public class PluginClassloader extends ClassLoader {
 
     private byte[] getBytes(final URL classUrl) {
         try {
-            return classUrl.openStream().readAllBytes();
+            return ByteStreams.toByteArray(classUrl.openStream());
         } catch (IOException e) {
             throw new RuntimeException();
         }
